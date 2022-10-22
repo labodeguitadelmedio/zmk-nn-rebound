@@ -74,7 +74,7 @@
             label = "Default";
             bindings = <
         &kp ESC             &kp Q       &kp W       &kp E       &kp R                       &kp T                                       &kp Y            &kp U            &kp I                        &kp O           &kp P          &kp LA(BSPC)
-        &mt LC(LS(LA)) TAB  &kp A       &kp S       &kp D       &kp F                       &kp G               &kp PG_UP               &kp H            &kp J            &kp K                        &kp L           &kp SQT        &kp SEMI
+        &mt LC(LS(LALT)) TAB  &kp A       &kp S       &kp D       &kp F                       &kp G               &kp PG_UP               &kp H            &kp J            &kp K                        &kp L           &kp SQT        &kp SEMI
         &mt LSHIFT HOME     &kp Z       &kp X       &kp C       &kp V                       &kp B               &kp PG_DN               &kp N            &kp M            &kp COMMA                    &kp DOT         &kp UP         &kp FSLH
         &mt LCTRL LC(TAB)   &kp LGUI    &mt LALT BSPC   &mt LALT BSPC    &lt LOWER ENTER    &lt LOWER ENTER     &none                   &lt RAISE SPACE  &lt RAISE SPACE  &mt LC(LS(LA(LGUI))) END     &kp LEFT        &kp DOWN       &kp RIGHT
                         >;
