@@ -85,8 +85,8 @@
             label = "Lower";
             bindings = <
         &rgb_ug RGB_TOG     &kp EXCL    &kp AT          &kp HASH    &kp LA(N3)          &kp PRCNT                           &kp CARET         &kp AMPS         &kp ASTRK           &kp LPAR    &kp RPAR        &kp EQUAL
-        &trans              &trans      &kp LA(LS(N2))  &kp DOLLAR  &trans              &trans              &trans          &rgb_ug RGB_HUI   &rgb_ug RGB_VAI  &rgb_ug RGB_SAI     &kp MINUS   &kp PLUS        &kp BSLH
-        &trans              &trans      &trans          &trans      &trans              &trans              &trans          &rgb_ug RGB_HUD   &rgb_ug RGB_VAD  &rgb_ug RGB_SAD     &trans      &kp PG_UP       &kp FSLH
+        &trans              &trans      &kp LA(LS(N2))  &kp DOLLAR  &trans              &trans              &trans          &rgb_ug RGB_HUI   &rgb_ug RGB_BRI  &rgb_ug RGB_SAI     &kp MINUS   &kp PLUS        &kp BSLH
+        &trans              &trans      &trans          &trans      &trans              &trans              &trans          &rgb_ug RGB_HUD   &rgb_ug RGB_BRI  &rgb_ug RGB_SAD     &trans      &kp PG_UP       &kp FSLH
         &bootloader         &trans      &trans          &trans      &trans              &trans              &trans          &trans            &trans           &trans              &trans      &kp PG_DN       &trans
                         >;
                         sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
