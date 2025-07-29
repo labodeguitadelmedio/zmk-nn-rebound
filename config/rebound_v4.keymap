@@ -15,57 +15,297 @@
 #define LWR     1
 #define RAS     2
 #define ADJ     3
+#define NUM     4
 
-&caps_word {
-    continue-list = <UNDERSCORE MINUS>;
-};
+#define AG(keycode) &ag LG(keycode) keycode     // AutoGUI Macro
 
-/ {
-    combos {
-    };
-  };
+#define MEH     &kp LC(LS(LALT))
+#define HYPER   &kp LC(LS(LA(LGUI)))
 
-/ {
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <1 2>;
-            then-layer = <3>;
-        };
-    };
-};
+&mt { tapping-term-ms = <250>; };
 
 / {
-
     behaviors {
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
+        tdques: td_ques {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&htslash 0 SLASH>, <&kp QUESTION>, <&wth>;
+        };
+
+        tdquote: td_quote {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
             tapping-term-ms = <200>;
-            quick_tap_ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp SQT>, <&kp DQT>;
         };
-        hs: homerow_shift {
+
+        tdcolon: td_colon {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&kp SEMICOLON>, <&kp COLON>;
+        };
+
+        tdleft: td_left {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mt LA(LEFT) LEFT>, <&ag LEFT>;
+
+            tapping-term-ms = <250>;
+        };
+
+        ag_ht: ag_ht {
             compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
+            label = "AG_HT";
+            bindings = <&gui>, <&kp>;
+
             #binding-cells = <2>;
             tapping-term-ms = <250>;
-            quick_tap_ms = <0>;
             flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
         };
-        am: amethyst_modifyers {
+
+        tdright: td_right_arrow {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mt LA(RIGHT_ARROW) RIGHT>, <&ag RIGHT_ARROW>;
+
+            tapping-term-ms = <250>;
+        };
+
+        tdup: td_up_arrow {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TDU";
+            #binding-cells = <0>;
+            bindings = <&mt PAGE_UP UP_ARROW>, <&ag UP_ARROW>;
+
+            tapping-term-ms = <250>;
+        };
+
+        tddown: td_down_arrow {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TDDOW";
+            #binding-cells = <0>;
+            bindings = <&mt PAGE_DOWN DOWN_ARROW>, <&ag DOWN_ARROW>;
+
+            tapping-term-ms = <250>;
+        };
+
+        htslash: htslash {
             compatible = "zmk,behavior-hold-tap";
-            label = "AMETHYST_MODIFYER";
+            label = "HTSLASH";
+            bindings = <&interrobang>, <&kp>;
+
             #binding-cells = <2>;
             tapping-term-ms = <250>;
-            quick_tap_ms = <0>;
             flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+        };
+
+        tdsquare: tdsquare {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&ag LEFT_BRACKET>, <&kp LEFT_BRACE>;
+
+            label = "TDSQUARE";
+        };
+
+        tdcurly: tdcurly {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&ag RIGHT_BRACKET>, <&kp RIGHT_BRACE>;
+
+            label = "TDCURLY";
+        };
+
+        hyper: hyper {
+            compatible = "zmk,behavior-tap-dance";
+            label = "HYPER";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings =
+                <&mt LS(LG(LA(LCTRL))) ESCAPE>,
+                <&mt C_AL_LOCK C_POWER>,
+                <&htsos LC(C_POWER) 0>;
+        };
+
+        htsos: htsos {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HTSOS";
+            bindings = <&kp>, <&sos>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+            flavor = "tap-preferred";
+        };
+
+        mo_tog: mo_tog {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MO_TOG";
+            bindings = <&mo>, <&tog>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+        };
+
+        ht_emdash: ht_emdash {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_EMDASH";
+            bindings = <&kp>, <&doubledash>;
+
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <250>;
+        };
+
+        td_dash: td_dash {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_DASH";
+            #binding-cells = <0>;
+            bindings =
+                <&mt UNDER MINUS>,
+                <&ht_emdash LS(LA(MINUS)) 0>,
+                <&ht_endash LA(MINUS) 0>;
+        };
+
+        ht_endash: ht_endash {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_ENDASH";
+            bindings = <&kp>, <&tripledash>;
+
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <250>;
+        };
+
+        td_4key: td_4key {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_4KEY";
+            #binding-cells = <0>;
+            bindings = <&mt F4 LA(NUMBER_3)>, <&kp DOLLAR>;
+        };
+
+        td_5key: td_5key {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_5KEY";
+            #binding-cells = <0>;
+            bindings = <&mt F5 PERCENT>, <&kp LA(NUMBER_2)>;
+        };
+
+        td_3key: td_3key {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_3KEY";
+            #binding-cells = <0>;
+            bindings = <&mt F3 HASH>, <&kp LA(LS(N2))>;
         };
     };
+};
+
+/ {
+    macros {
+        ag: ag {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings =
+                <&macro_press>,
+                <&macro_param_1to1 &macro_param_1to2 &ag_ht MACRO_PLACEHOLDER MACRO_PLACEHOLDER>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&macro_param_1to1 &macro_param_1to2 &ag_ht MACRO_PLACEHOLDER MACRO_PLACEHOLDER>;
+
+            label = "AG";
+        };
+
+        gui: cmg {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings =
+                <&macro_press>,
+                <&kp LGUI>,
+                <&macro_tap>,
+                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
+                <&macro_release>,
+                <&kp LGUI>;
+
+            label = "CMG";
+        };
+
+        interrobang: interrobang {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp QUESTION &kp EXCLAMATION>,
+                <&macro_release>;
+
+            label = "interrobang";
+        };
+
+        blah: blah {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LA(LS(LCTRL))>, <&macro_release>;
+
+            label = "BLAH";
+        };
+
+        wth: wth {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp QUESTION &kp QUESTION &kp QUESTION>,
+                <&macro_release>;
+
+            label = "WTH";
+        };
+
+        sos: sos {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LA(LG(ESCAPE))>, <&macro_release>;
+
+            label = "SOS";
+        };
+
+        powerup: powerup {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LC(C_POWER)>, <&macro_release>;
+
+            label = "POWERUP";
+        };
+
+        doubledash: doubledash {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp MINUS &kp MINUS>, <&macro_release>;
+
+            label = "DOUBLEDASH";
+        };
+
+        tripledash: tripledash {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp MINUS &kp MINUS &kp MINUS>,
+                <&macro_release>;
+
+            label = "TRIPLEDASH";
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        capwordz {
+            bindings = <&caps_word>;
+            key-positions = <25 34>;
+        };
+    };
+
 
         keymap {
         compatible = "zmk,keymap";
